@@ -64,11 +64,11 @@
   }
 }
 
-.search-input{
+.search-input {
   width: 100%;
   margin-left: 16px;
   color: #64748b;
-  font-family: "Roboto";
+  font-family: 'Roboto';
   outline: none;
   border: none;
   cursor: pointer;
@@ -77,12 +77,11 @@
 }
 
 @media screen and (min-width: 768px) {
- .search-input {
-   font-size: 20px;
-   margin-left: 8px;
- }
+  .search-input {
+    font-size: 20px;
+    margin-left: 8px;
+  }
 }
-
 
 .suggestions-list {
   padding-left: 12px;

@@ -6,8 +6,26 @@ import SuggestionItem from '../SuggestionItem'
 import './index.css'
 
 class GoogleSuggestions extends Component {
+  state = {
+    searchInput: '',
+  }
+
+  updateSearchInput = value => {
+    this.setState({searchInput: value})
+  }
+
+  onChangeSearchInput = event => {
+    this.setState({searchInput: event.target.value})
+  }
+
   render() {
+    const {searchInput} = this.state
     const {suggestionsList} = this.props
+    const searchResults = suggestionsList.filter(eachSuggestion =>
+      eachSuggestion.suggestion
+        .toLowerCase()
+        .includes(searchInput.toLocaleLowerCase()),
+    )
     return (
       <div className="app-container">
         <div className="google-suggestions-container">
@@ -27,13 +45,16 @@ class GoogleSuggestions extends Component {
                 type="search"
                 placeholder="Search Google"
                 className="search-input"
+                onChange={this.onChangeSearchInput}
+                value={searchInput}
               />
             </div>
             <ul className="suggestions-list">
-              {suggestionsList.map(eachSuggestion => (
+              {searchResults.map(eachSuggestion => (
                 <SuggestionItem
                   key={eachSuggestion.id}
                   suggestionDetails={eachSuggestion}
+                  updateSearchInput={this.updateSearchInput}
                 />
               ))}
             </ul>
